@@ -15,7 +15,7 @@
 7. Click Set Ground Plane.
 8. Export calibration data (.cal file) in directory "This PC"/Documents/Optitrack/"Session 2023-01-24", for example
 
-## Tips for goos camera placement
+## Tips for good camera placement
 https://docs.optitrack.com/hardware/camera-placement?title=Camera_Placement
 
 ## Accessing Motive Camera Locations
