@@ -38,7 +38,7 @@ NOTE: The xavier_nx branch reduces the image buffer length (to decrease lag duri
 cd ~/ROS/catkin_ws
 catkin build rovio -DROVIO_NCAM=2 -DROVIO_NMAXFEATURE=15 --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
-3. Get dependencies then clone and build rotors_rovio_tf:  
+4. Get dependencies then clone and build rotors_rovio_tf:  
 ```
 sudo apt install ros-noetic-tf2-geometry-msgs
 cd ~/ROS/catkin_ws/src
@@ -46,7 +46,7 @@ git clone https://github.com/seqwalt/rotors_rovio_tf.git
 cd ../
 catkin build rotors_rovio_tf
 ```
-4. Get dependencies then clone and build odom_predictor:  
+5. Get dependencies then clone and build odom_predictor:  
 ```
 cd ~/ROS/catkin_ws/src
 git clone https://github.com/catkin/catkin_simple.git
@@ -66,6 +66,10 @@ git clone https://github.com/ethz-asl/gflags_catkin.git
 sudo apt install ros-noetic-eigen-conversions ros-noetic-tf-conversions
 cd ~/ROS/catkin_ws
 catkin build
+```
+6. Turn off visualizations (required for when running ROVIO from ssh). In file /home/vio-quad/ROS/catkin_ws/src/rovio/cfg/xavier_nx_d435i/rovio_stereo.info, set:
+```
+doFrameVisualisation false;
 ```
 
 ## Install realsense camera drivers

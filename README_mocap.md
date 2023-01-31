@@ -32,3 +32,33 @@ The Motive API will need to be used in order to obtain the camera locations. The
 ```
 sudo apt-get install ros-noetic-mocap-optitrack
 ```
+2. In mocap_optitrack config file /opt/ros/noetic/share/mocap_optitrack/config/mocap.yaml:
+```
+#
+# Definition of all trackable objects
+# Identifier corresponds to Trackable ID set in Tracking Tools
+#
+rigid_bodies:
+    '21':
+        pose: vioquad/pose
+        child_frame_id: vioquad/base_link
+        parent_frame_id: world
+optitrack_config:
+        multicast_address: 239.255.42.99
+        command_port: 1510
+        data_port: 1511
+        enable_optitrack: true
+```
+Note '21' is the Motive Stream ID of the rigid body for the VIO quadcopter.
+
+## Test mocap in RVIZ
+1. In Xavier run:
+```
+roslaunch mocap_optitrack mocap.launch
+```
+2. In base station run:
+```
+export ROS_MASTER_URI=http://xavier_IP_address:11311
+rosrun rviz rviz
+```
+In RVIZ, view the pose of the quadcopter.
