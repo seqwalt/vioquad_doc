@@ -23,3 +23,12 @@ The Motive API will need to be used in order to obtain the camera locations. The
 - https://forums.naturalpoint.com/viewtopic.php?f=69&t=17247
 - https://v21.wiki.optitrack.com/index.php?title=Motive_API
 - https://v22.wiki.optitrack.com/index.php?title=Motive_Basics#Calibration_files_.28CAL.29
+
+## Installing ROS mocap node on Xavier NX
+- See http://wiki.ros.org/mocap_optitrack and
+- https://docs.px4.io/main/en/ros/external_position_estimation.html and
+- https://github.com/wisc-arclab/arclab_vehicles/tree/ACADO-MPC#mocap
+1. On Xavier, run
+```
+sudo apt-get install ros-noetic-mocap-optitrack
+```
