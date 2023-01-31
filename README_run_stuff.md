@@ -1,3 +1,10 @@
+## IMPORTANT: Turning Xavier NX on/off
+**Turning ON:**
+- plug in cord, and wait around 1 min, 15 sec before attempting to ssh to Xavier.
+
+**Turning OFF:**
+- Do `sudo shutdown -h now` command on Xavier NX, then wait about 1 minute before unplugging.
+
 ## Run rovio with the d435i camera on the Xavier NX
 1. Start rovio and wait for tests to finish:
 ```
