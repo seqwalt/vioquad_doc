@@ -18,3 +18,15 @@ roscore
 sudo chmod 666 /dev/ttyTHS0
 rosrun mavros mavros_node _fcu_url:=/dev/ttyTHS0:921600
 ```
+
+## Start mocap visualization
+1. In Xavier run:
+```
+roslaunch mocap_optitrack mocap.launch
+```
+2. In base station run:
+```
+export ROS_MASTER_URI=http://xavier_IP_address:11311
+rosrun rviz rviz
+```
+In RVIZ, view the pose of the quadcopter.
