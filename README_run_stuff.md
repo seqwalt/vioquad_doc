@@ -17,13 +17,20 @@ roslaunch realsense2_camera rs_d435i.launch
 3. Gently move the camera until the rovio image is running real-time.
 
 ## Start MAVLink Communication
-Communicate between Xavier NX and Kakute H7 v2 using mavros:
+Communicate between Xavier NX, Kakute H7 v2 and QGC using mavros:
 1. Ensure correct UART wire connection.
 2. On Xavier NX run:
 ```
 roscore
 sudo chmod 666 /dev/ttyTHS0
-rosrun mavros mavros_node _fcu_url:=/dev/ttyTHS0:921600
+rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
+rosrun mavros mavros_node _fcu_url:=/dev/ttyTHS0:921600 _gcs_url:=udp://@192.168.1.203
+```
+3. Or instead run:
+```
+sudo chmod 666 /dev/ttyTHS0
+rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
+roslaunch mavros px4.launch
 ```
 
 ## Start mocap visualization

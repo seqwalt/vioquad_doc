@@ -31,9 +31,13 @@ Rigid body x-axis should be aligned with motive world x-axis when creating rigid
 - See http://wiki.ros.org/mocap_optitrack and
 - https://docs.px4.io/main/en/ros/external_position_estimation.html and
 - https://github.com/wisc-arclab/arclab_vehicles/tree/ACADO-MPC#mocap
-1. On Xavier, run
+1. On Xavier, install mocap_optitrack with custom config file.
 ```
-sudo apt-get install ros-noetic-mocap-optitrack
+cd ~/ROS/catkin_ws/src
+git clone https://github.com/seqwalt/mocap_optitrack.git
+cd ..
+catkin build mocap_optitrack
+source devel/setup.bash
 ```
 2. In mocap_optitrack config file /opt/ros/noetic/share/mocap_optitrack/config/mocap.yaml:
 ```

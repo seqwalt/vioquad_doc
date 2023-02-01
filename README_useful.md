@@ -8,6 +8,8 @@
   - https://docs.nvidia.com/jetson/archives/r35.1/DeveloperGuide/text/SD/PlatformPowerAndPerformance/JetsonXavierNxSeriesAndJetsonAgxXavierSeries.html#fan-speed-control
 - Overclocking:
   - https://docs.nvidia.com/jetson/archives/r35.1/DeveloperGuide/text/SD/PlatformPowerAndPerformance/JetsonXavierNxSeriesAndJetsonAgxXavierSeries.html#maximizing-jetson-xavier-performance
+- Change wifi via terminal:
+  - https://askubuntu.com/questions/1164074/how-to-connect-to-wifi-using-just-the-terminal
 
 ## PX4
 - PX4 System Architecture:

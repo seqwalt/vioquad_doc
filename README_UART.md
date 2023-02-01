@@ -81,6 +81,22 @@ rosrun mavros mavros_node _fcu_url:=/dev/ttyTHS0:921600
 ```
 We can see in the Xavier terminal that there was a successful connection, and in the QGC console the command ```mavlink status``` shares that it is receiving data! Woohoo!
 
+### Update launch file and remap mocap pose data
+1. On the Xavier, run
+```
+roscd mavros
+sudo nano launch/px4.launch
+```
+2. Change line 5 from ```<arg name="fcu_url" default="/dev/ttyACM0:57600" />``` to
+```
+<arg name="fcu_url" default="/dev/ttyTHS0:921600" />
+```
+3. For providing mocap to mavros, run
+```
+rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
+```
+4. Launch the node with ```roslaunch mavros px4.launch```
+
 # TODO
 
 - Issue 1: Look into the various warnings (on Xavier terminal) after the rosrun command:
