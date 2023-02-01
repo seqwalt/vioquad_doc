@@ -33,6 +33,7 @@ By default, PX4 has TELEM1 as the configuration name for the R1, T1 pins i.e. UA
 TELEM1 is used as the default MAVLink serial port in QGC (check parameter MAV_0_CONFIG). See https://docs.px4.io/v1.9.0/en/advanced_config/parameter_reference.html#mavlink for more MAVLink parameters. According to https://docs.px4.io/main/en/flight_controller/kakuteh7.html#serial-port-mapping, the serial port mapping for TELEM1 is /dev/ttyS0, which can be confirmed in QGC console using ```mavlink status``` (this prints info regarding MAVLink ports such as port location and baud rate).
 
 Note TELEM1 is usually used for ground control telemetry stream, but we'll use it to talk with the companion computer instead. Now, set the following parameters in QGroundControl (see example https://docs.px4.io/main/en/peripherals/mavlink_peripherals.html#example):
+- DSHOT_TEL_CFG = ```TELEM2``` (as previously mentioned)
 - MAV_0_CONFIG = ```TELEM 1``` (should already be done by default)
 - MAV_0_MODE = ```Onboard```
 - MAV_0_RATE = ```80000 B/s``` (might have to be reduced in event of message losses)
@@ -77,11 +78,12 @@ sudo chmod 666 /dev/ttyTHS0
 On the Xavier, run the mavros node to obtain a MAVLink connection (https://github.com/mavlink/mavros/blob/master/mavros/README.md#mavros_node----main-communication-node):
 ```
 roscore
-rosrun mavros mavros_node _fcu_url:=/dev/ttyTHS0:921600
+rosrun mavros mavros_node _fcu_url:=/dev/ttyTHS0:921600 _gcs_url:=udp://@my_base_station_IP
 ```
 We can see in the Xavier terminal that there was a successful connection, and in the QGC console the command ```mavlink status``` shares that it is receiving data! Woohoo!
 
-### Update launch file and remap mocap pose data
+### Update launch file and relay mocap pose data
+Alternatively, we can start the mavros node with a launch file:
 1. On the Xavier, run
 ```
 roscd mavros
@@ -90,6 +92,10 @@ sudo nano launch/px4.launch
 2. Change line 5 from ```<arg name="fcu_url" default="/dev/ttyACM0:57600" />``` to
 ```
 <arg name="fcu_url" default="/dev/ttyTHS0:921600" />
+```
+3. Similiarly, change line 6 to
+```
+<arg name="gcs_url" default="udp://@my_base_station_IP" />
 ```
 3. For providing mocap to mavros, run
 ```

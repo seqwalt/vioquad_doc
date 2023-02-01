@@ -73,18 +73,17 @@ In RVIZ, view the pose of the quadcopter.
 ## Set EKF2 parameters
 This will allow for the use of mocap for position control (see https://docs.px4.io/main/en/ros/external_position_estimation.html#ekf2-tuning-configuration).
 1. Enable EKF2 for kakute H7 v2, following https://github.com/PX4/PX4-Autopilot/issues/19986. Set:
-```
-SYS_MC_EST_GROUP = EKF2
-SYS_HAS_MAG = 0 (i.e. no magnetometer on kakute h7 v2)
-EKF2_MAG_TYPE = None
-EFK2_EV_DELAY = 0 (delay handled by mavros)
-EKF2_HGT_REF = Vision
-EFK2_EV_CTRL = 15 (horizontal pos, vertical pos, 3D vel, yaw)
-EKF2_GPS_CTRL = 0 (disable GPS)
-EKF2_BARO_CTRL = Disabled (disable barometer)
-EKF2_RNG_CTRL = Disable range fusion (disable range finder)
-EKF2_EV_POS_X = 0.248 ft (relative to measured d435i camera)
-EKF2_EV_POS_Y = -0.03 ft
-EKF2_EV_POS_Z = 0.03 ft
-```
+- SYS_MC_EST_GROUP = ```EKF2```
+- SYS_HAS_MAG = ```0``` (i.e. no magnetometer on kakute h7 v2)
+- EKF2_MAG_TYPE = ```None```
+- EFK2_EV_DELAY = ```0``` (delay handled by mavros)
+- EKF2_HGT_REF = ```Vision```
+- EFK2_EV_CTRL = ```15``` (horizontal pos, vertical pos, 3D vel, yaw)
+- EKF2_GPS_CTRL = ```0``` (disable GPS)
+- EKF2_BARO_CTRL = ```Disabled``` (disable barometer)
+- EKF2_RNG_CTRL = ```Disable range fusion``` (disable range finder)
+- EKF2_EV_POS_X = ```0.248 ft``` (relative to measured d435i camera)
+- EKF2_EV_POS_Y = ```-0.03 ft```
+- EKF2_EV_POS_Z = ```0.03 ft```
+
 **Note:** look into vision delay potentially: https://docs.px4.io/main/en/ros/external_position_estimation.html#tuning-ekf2-ev-delay
