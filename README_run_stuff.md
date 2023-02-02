@@ -1,21 +1,22 @@
 ## IMPORTANT: Turning Xavier NX on/off
 **Turning ON:**
-- plug in cord, and wait around 1 min, 15 sec before attempting to ssh to Xavier.
+- plug in cord, and wait around 1 minute before attempting to ssh to Xavier. The ssh command from the Ubuntu base station (which is on the same wifi ARC LAN network), is ```ssh vio-quad@the_vio_quad_IP```.
 
 **Turning OFF:**
-- Do `sudo shutdown -h now` command on Xavier NX, then wait about 1 minute before unplugging.
+- Do `sudo shutdown -P now` command on Xavier NX, then wait about 1 minute before unplugging.
 
 ## Start mocap
-1. In Xavier run:
+1. Start the Motive software on mocap computer, and ensure the vioquad rigid body is detected. Make sure the streaming IP in Motive is the 192.XXX.X.XXX address.
+2. In Xavier run:
 ```
 roslaunch mocap_optitrack mocap.launch
 ```
-2. For visualization in base station, run:
+3. For visualization on the Ubuntu base station, run:
 ```
 export ROS_MASTER_URI=http://xavier_IP_address:11311
 rosrun rviz rviz
 ```
-In RVIZ, view the pose of the quadcopter.
+In RVIZ, view the pose of the quadcopter by clicking ```Add``` --> ```By Topic``` --> ```/mocap_node/vioquad/pose```.
 
 ## Run rovio with the d435i camera on the Xavier NX
 1. Start rovio and wait for tests to finish:

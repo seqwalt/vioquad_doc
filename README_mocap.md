@@ -25,7 +25,8 @@ The Motive API will need to be used in order to obtain the camera locations. The
 - https://v22.wiki.optitrack.com/index.php?title=Motive_Basics#Calibration_files_.28CAL.29
 
 ## Create rigid body for vioquad
-Rigid body x-axis should be aligned with motive world x-axis when creating rigid body.
+- First, the rigid body x-axis should be aligned with motive world x-axis when creating rigid body.
+- Next in the rigid body builder, go to ```Edit```, then set the ```Yaw``` orientation to ```180``` degrees. This allows mavros to send the correct position data to the flight controller.
 
 ## Installing ROS mocap node on Xavier NX
 - See http://wiki.ros.org/mocap_optitrack and
@@ -70,7 +71,7 @@ rosrun rviz rviz
 ```
 In RVIZ, view the pose of the quadcopter.
 
-## Set EKF2 parameters
+## Setup EKF2
 This will allow for the use of mocap for position control (see https://docs.px4.io/main/en/ros/external_position_estimation.html#ekf2-tuning-configuration).
 1. Enable EKF2 for kakute H7 v2, following https://github.com/PX4/PX4-Autopilot/issues/19986. Set:
 - SYS_MC_EST_GROUP = ```EKF2```
@@ -85,5 +86,18 @@ This will allow for the use of mocap for position control (see https://docs.px4.
 - EKF2_EV_POS_X = ```0.248 ft``` (relative to measured d435i camera)
 - EKF2_EV_POS_Y = ```-0.03 ft```
 - EKF2_EV_POS_Z = ```0.03 ft```
+- EKF2_AID_MASK = ```4``` (inhibit imu bias estimation)
+- EKF2_EVA_NOISE = ```2.87 deg``` (decrease angle measurement noise)
+- EKF2_EVP_NOISE = ```0.03 ft``` (decrease position measurement noise)
 
 **Note:** look into vision delay potentially: https://docs.px4.io/main/en/ros/external_position_estimation.html#tuning-ekf2-ev-delay
+2. Check that the pose data is correct.
+- Start the mocap node on Xavier through ssh.
+- Start the mavlink connection:
+```
+sudo chmod 666 /dev/ttyTHS0
+rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
+roslaunch mavros px4.launch
+```
+- In QGC on the Ubuntu base station, go to ```Analyze Tools``` --> ```Mavlink Inspector``` --> ```Odometry```.
+- Open a plot for viewing x,y,z and confirm correct behavior, following: https://docs.px4.io/main/en/ros/external_position_estimation.html#check-external-estimate.

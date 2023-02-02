@@ -36,7 +36,8 @@ Note TELEM1 is usually used for ground control telemetry stream, but we'll use i
 - DSHOT_TEL_CFG = ```TELEM2``` (as previously mentioned)
 - MAV_0_CONFIG = ```TELEM 1``` (should already be done by default)
 - MAV_0_MODE = ```Onboard```
-- MAV_0_RATE = ```80000 B/s``` (might have to be reduced in event of message losses)
+- MAV_0_RATE = ```30000 B/s```
+- MAV_0_RADIO_CTL = ```Disabled``` (disable mavlink software throttling)
 - MAV_PROTO_VER = ```Always use version 2``` (this conforms with default mavros setting)
 - SER_TEL1_BAUD = ```921600 8N1``` (set baud rate)
 
