@@ -46,3 +46,8 @@ OR
 ```
 roslaunch mavros px4.launch
 ```
+## Start autonomous flight
+After starting mocap/VIO and mavros, on the Xavier NX run:
+```
+rosrun quad_control offbnode
+```
