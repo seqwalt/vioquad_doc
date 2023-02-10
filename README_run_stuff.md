@@ -46,8 +46,11 @@ OR
 ```
 roslaunch mavros px4.launch
 ```
+4. Start QGroundControl on the base station.
+
 ## Start autonomous flight
-After starting mocap/VIO and mavros, on the Xavier NX run:
+1. After starting mocap/VIO and mavros, on the Xavier NX run:
 ```
 rosrun quad_control offb_node
 ```
+2. With the RC Transmitter in ```OFFBOARD``` mode, ARM the quadcopter with the transmitter.
