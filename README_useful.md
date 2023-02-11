@@ -1,4 +1,13 @@
 # Useful Resources
+
+## General
+- Benchmarks of VIO algorithms on Jetson computers:
+  - https://arxiv.org/abs/2103.01655
+- Useful VIO/ROS/Xavier NX repositories:
+  - https://github.com/zinuok?tab=repositories
+- Implemenations of different VIO algorithms (see different branches for different cameras)
+  - https://github.com/engcang/vins-application
+
 ## Jetson Xavier NX
 - Documentation for JetPack 35.1:
   - https://docs.nvidia.com/jetson/archives/r35.1/DeveloperGuide/.
