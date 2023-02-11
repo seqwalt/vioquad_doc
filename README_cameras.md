@@ -121,7 +121,7 @@ rosrun allan_variance_ros analysis.py --data allan_variance.csv
 ## Calibrate the D435i camera & IMU system
 1. Once in the docker container, run the following to do stereo calibration:
 ```
-source devel/setup.bash
+source /catkin_ws/devel/setup.bash
 rosrun kalibr kalibr_calibrate_cameras \
     --bag /data/d435i/vioquad_d435i.bag \
     --target /data/aprilgrid.yaml \
