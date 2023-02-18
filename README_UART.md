@@ -103,18 +103,3 @@ sudo nano launch/px4.launch
 rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
 ```
 4. Launch the node with ```roslaunch mavros px4.launch```
-
-# TODO
-
-- Issue 1: Look into the various warnings (on Xavier terminal) after the rosrun command:
-  - ```CMD: Unexpected command 520, result 0```
-  - ```PR: request param #46 timeout, retries left 2, and 2 params still missing```
-  - ```CMD: Command 410 -- wait ack timeout```
-  - Potential solution to Issue 1: Save QGC config files (use ```dmesg``` in QGC console). Then re-flash Kakute H7 v2 board with updated firmware from github pull request https://github.com/PX4/PX4-Autopilot/pull/20545.
-- Try Offboard C++ example (https://docs.px4.io/main/en/ros/mavros_offboard_cpp.html) after establishing MAVLink with mavros.
-  - Print mount for jetson xavier and d435i. Auto-tune parameters to adjust for different weight, while Xavier and camera are attached.
-  - Try to use ROVIO as state estimation and have quadcopter hover in offboard mode (HITL simulation first?), with RC backup in manual mode. Configure RC switch to control offboard mode activation. See offboard mode link:
-    - https://docs.px4.io/main/en/flight_modes/offboard.html
-- Try using Optitrack to control quadcopter: https://docs.px4.io/main/en/ros/external_position_estimation.html
-- Try using ground station connected to RC controller to control quadcopter: https://drones.stackexchange.com/questions/1321/control-opentx-transmitter-from-pc
-- Note UART example (without ros): https://github.com/mavlink/c_uart_interface_example (probably won't need this)
