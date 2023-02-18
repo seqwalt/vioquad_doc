@@ -8,9 +8,10 @@
 
 ## Start mocap
 1. Start the Motive software on mocap computer, and ensure the vioquad rigid body is detected. Make sure the streaming IP in Motive is the 192.XXX.X.XXX address.
-2. In Xavier run:
+2. In Xavier run the following in separate terminals:
 ```
 roslaunch mocap_optitrack mocap.launch
+rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
 ```
 3. For visualization on the Ubuntu base station, run:
 ```
@@ -36,7 +37,6 @@ After starting mocap, communicate between Xavier NX, Kakute H7 v2 and QGC using 
 2. On Xavier NX run:
 ```
 sudo chmod 666 /dev/ttyTHS0
-rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
 ```
 3. Next, start mavros with
 ```
@@ -49,8 +49,8 @@ roslaunch mavros px4.launch
 4. Start QGroundControl on the base station.
 
 ## Start autonomous flight
-1. After starting mocap/VIO and mavros, on the Xavier NX run:
+1. With the RC Transmitter in ```POSITION``` mode, ARM the quadcopter with the transmitter.
+2. After starting mocap and/or VIO and mavros, on the Xavier NX run:
 ```
-rosrun quad_control offb_node
+roslaunch quad_control sim.launch
 ```
-2. With the RC Transmitter in ```OFFBOARD``` mode, ARM the quadcopter with the transmitter.
