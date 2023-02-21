@@ -36,4 +36,6 @@ With the FC connected to the computer open QGroundControl (QGC).
   - Make sure to ***test the switches*** with the ```Flight Modes``` tab open. The other settings can remain ```Unassigned``` for now.
 - In the ```Parameters``` tab set
   - DSHOT_TEL_CFG = ```TELEM 2``` (enable dshot)
+  - COM_RC_OVERRIDE = ```3``` (enable for offboard mode and other modes)
+    - Allows for taking over control of the drone during an Offboard mode mission. See here: https://docs.px4.io/main/en/flight_modes/offboard.html#offboard-parameters
 - In the ```Actuators``` tab correct motor directions with the propellors detached, and battery plugged in.

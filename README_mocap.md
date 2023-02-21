@@ -25,8 +25,8 @@ The Motive API will need to be used in order to obtain the camera locations. The
 - https://v22.wiki.optitrack.com/index.php?title=Motive_Basics#Calibration_files_.28CAL.29
 
 ## Create rigid body for vioquad
-- First, the rigid body x-axis should be aligned with motive world x-axis when creating rigid body.
-- Next in the rigid body builder, go to ```Edit```, then set the ```Yaw``` orientation to ```180``` degrees. This allows mavros to send the correct position data to the flight controller.
+- First, the quadcopter local x-axis (in direction of d435i camera) should be aligned with motive world x-axis when creating rigid body.
+- Next in the rigid body builder, go to ```Edit```, and decrease the height of the center of mass to a physically reasonable value.
 
 ## Installing ROS mocap node on Xavier NX
 - See http://wiki.ros.org/mocap_optitrack and
@@ -90,7 +90,7 @@ This will allow for the use of mocap for position control (see https://docs.px4.
 - EKF2_EV_POS_X = ```0.248 ft``` (relative to measured d435i camera)
 - EKF2_EV_POS_Y = ```-0.03 ft```
 - EKF2_EV_POS_Z = ```0.03 ft```
-- EKF2_AID_MASK = ```4``` (inhibit imu bias estimation)
+- EKF2_AID_MASK = ```0```
 - EKF2_EVA_NOISE = ```2.87 deg``` (decrease angle measurement noise)
 - EKF2_EVP_NOISE = ```0.03 ft``` (decrease position measurement noise)
 

@@ -52,5 +52,6 @@ roslaunch mavros px4.launch
 1. With the RC Transmitter in ```POSITION``` mode, ARM the quadcopter with the transmitter.
 2. After starting mocap and/or VIO and mavros, on the Xavier NX run:
 ```
-roslaunch quad_control sim.launch
+roslaunch quad_control controller.launch
 ```
+3. **WARNING:** Be ready to "Ctrl - C" the quad_control nodes in case the quadcopter does not behave as expected!
