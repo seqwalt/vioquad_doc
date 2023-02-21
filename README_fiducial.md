@@ -17,9 +17,32 @@ catkin build apriltag apriltag_ros
   3. In your favorite graphical editor, such as Inkscape, load the three tags, and imbed them inside of each other recursively.
   4. Print it out, and precisely measure the sizes, according to https://github.com/AprilRobotics/apriltag_ros#tag-size-definition.
 3. Update tag and setting config files as shown here: http://wiki.ros.org/apriltag_ros/Tutorials/Detection%20in%20a%20video%20stream
-4. Make sure the camera parameters are known and being published to my_camera_name/camera_info.
-5. After making sure the ```continuous_detection.launch``` file has correct parameters, run the apriltag detector for streamed video:
+4. Make sure the camera parameters are known and being published to ```my_camera_name/camera_info```. Likewise, make sure the camera images are being published on ```my_camera_name/image_raw```.
+5. After making sure the ```continuous_detection.launch``` file has correct parameters (topic names etc), run the apriltag detector for streamed video:
 ```
 roslaunch apriltag_ros continuous_detection.launch
 ```
 6. The poses of the apriltag bundle is on the ```/tf``` topic.
+
+## Publish image topic from CSI camera
+1. Make sure gscam dependencies are installed
+```
+sudo apt install gstreamer1.0-tools libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev
+sudo apt install ros-noetic-camera-info-manager
+```
+2. Install and build updated gscam package
+```
+cd ~/ROS/catkin_ws/src
+git clone https://github.com/seqwalt/gscam.git
+cd ../
+catkin build gscam
+source devel/setup.bash
+```
+3. Run gscam node to publish CSI image on the topic ```csi_cam/image_raw```, and camera info on ```csi_cam/camera_info```
+```
+roslaunch gscam nvidia_csi.launch
+```
+4. If getting "Failed to create CaptureSession" error, try
+```
+sudo service nvargus-daemon restart
+```
