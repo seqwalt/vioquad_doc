@@ -39,3 +39,4 @@ With the FC connected to the computer open QGroundControl (QGC).
   - COM_RC_OVERRIDE = ```3``` (enable for offboard mode and other modes)
     - Allows for taking over control of the drone during an Offboard mode mission. See here: https://docs.px4.io/main/en/flight_modes/offboard.html#offboard-parameters
 - In the ```Actuators``` tab correct motor directions with the propellors detached, and battery plugged in.
+- Note ESC calibration is NOT required if using DSHOT (which we are).
