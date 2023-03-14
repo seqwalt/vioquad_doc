@@ -2,7 +2,7 @@
 #### Setup Xavier NX companion computer (CC):
 - ```README_flash_xavier.md```: Flashing firmware onto A203 Xavier NX carrier board, then switching to boot from SD (for larger storage space).
 - ```README_bashrc.md```: Edits needed in the ~/.bashrc file on the Xavier NX in order to source ROS correctly and export necessary variables.
-- ```README_software_xavier.md```: Installing software to run [ROVIO](http://dx.doi.org/10.1177/0278364917728574), connect to Intel RealSense cameras, etc.
+- ```README_software_xavier.md```: Installing software to run [ROVIO](https://www.research-collection.ethz.ch/bitstream/handle/20.500.11850/155340/1/eth-48374-01.pdf), connect to Intel RealSense cameras, etc.
 - ```README_cameras.md```: Calibration and information regarding the d435i and T265 Intel RealSense cameras.
 - ```README_fiducial.md```: (optional) Setting up apriltag detection with a CSI camera connected to the Xavier NX.
 
