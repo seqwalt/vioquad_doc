@@ -19,6 +19,16 @@
   - https://docs.nvidia.com/jetson/archives/r35.1/DeveloperGuide/text/SD/PlatformPowerAndPerformance/JetsonXavierNxSeriesAndJetsonAgxXavierSeries.html#maximizing-jetson-xavier-performance
 - Change wifi via terminal:
   - https://askubuntu.com/questions/1164074/how-to-connect-to-wifi-using-just-the-terminal
+- Instructions for logging into github on the Xavier NX without needing a token
+  - Log into github, so ```git push``` doesn't ask for password:  
+  ```
+  gh auth login
+  ```
+  Follow prompt: Github.com -> HTTPS -> Browser option
+  - Log out:
+  ```
+  gh auth logout
+  ```
 
 ## PX4
 - PX4 System Architecture:

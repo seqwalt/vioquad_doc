@@ -28,6 +28,7 @@ roslaunch quad_control controller.launch
 ```
 
 ## Control vioquad (mocap pose data)
-
+TODO. For now, see ```README_run_stuff.md```.
 
 ## Control vioquad (VIO pose data)
+TODO

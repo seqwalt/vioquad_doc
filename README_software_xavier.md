@@ -17,6 +17,22 @@ cd ~/ROS
 mkdir -p catkin_ws/src
 ```
 
+## Editing .bashrc for ROS
+Add the following to the top of the ~/.bashrc file:  
+```
+# ROS sourcing
+source /opt/ros/noetic/setup.bash
+source /home/my_user_name/ROS/catkin_ws/devel/setup.bash
+
+# Automatically setup ROS_IP
+tmp=$(hostname -I)
+ip=$(echo $tmp | cut -d' ' -f 1)
+export ROS_IP=$ip
+
+# ROS package path
+export ROS_PACKAGE_PATH=/home/my_user_name/ROS/catkin_ws:$ROS_PACKAGE_PATH
+```
+
 ## Install ROVIO and related packages
 1. Install ROVIO dependencies:  
 ```

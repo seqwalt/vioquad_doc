@@ -97,9 +97,13 @@ This will allow for the use of mocap for position control (see https://docs.px4.
 **Note:** look into vision delay potentially: https://docs.px4.io/main/en/ros/external_position_estimation.html#tuning-ekf2-ev-delay
 2. Check that the pose data is correct.
 - Start the mocap node on Xavier through ssh.
-- Start the mavlink connection:
+- Permit UART communication:
 ```
 sudo chmod 666 /dev/ttyTHS0
+```
+- Start the mavlink connection (separate terminal for each command):
+```
+roslaunch mocap_optitrack mocap.launch
 rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
 roslaunch mavros px4.launch
 ```

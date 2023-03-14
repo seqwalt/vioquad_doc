@@ -1,13 +1,20 @@
 ## Xavier NX VIO-quad Instructions
-This repo contains instructions (in order) for:
-- ```README_flash.md```: Flashing firmware onto A203 Xavier NX carrier board, then switching to boot from SD (for larger storage space).
+#### Setup Xavier NX companion computer (CC):
+- ```README_flash_xavier.md```: Flashing firmware onto A203 Xavier NX carrier board, then switching to boot from SD (for larger storage space).
 - ```README_bashrc.md```: Edits needed in the ~/.bashrc file on the Xavier NX in order to source ROS correctly and export necessary variables.
-- ```README_ROVIO_software.md```: Installing software to run ROVIO, connect to Intel RealSense cameras, etc.
+- ```README_software_xavier.md```: Installing software to run [ROVIO](http://dx.doi.org/10.1177/0278364917728574), connect to Intel RealSense cameras, etc.
 - ```README_cameras.md```: Calibration and information regarding the d435i and T265 Intel RealSense cameras.
-- (COMING SOON)```README_assembly.md```: Assembling the base quadcopter.
+- ```README_fiducial.md```: (optional) Setting up apriltag detection with a CSI camera connected to the Xavier NX.
+
+#### Setup CC & FCU (Kakute H7 v2) communication
+- ```README_FCU_setup.md```: Flashing firmware on the Kakute H7 v2, and setting up QGroundControl.
 - ```README_UART.md```: Connecting Xavier NX with the Kakute flight controller using UART ports and mavros.
-- ```README_run_stuff.md```: Commands to run in the Xavier NX terminal to start ROVIO and initialize the MAVLink communication through mavros.
+- ```README_mocap.md```: Setting up Motive motion capture and PX4 EKF2, for ground truth state estimation.
+
+#### Taking flight
+- ```README_control.md```: Tuning PX4 quadcopter, and commands for running control algorithm in simulation.
+- ```README_run_stuff.md```: Commands to run in the Xavier NX terminal to start mocap, ROVIO, MAVLink communication through mavros, and fly the quadcopter.
 
 ### Other
-- ```README_useful.md```: Links to useful resources.
-- ```README_github_login.md```: How to connect to a github account on Xavier NX (or any computer) without needing a personal access token.
+- ```README_useful.md```: Tips and links to useful resources.
+- (COMING SOON)```README_assembly.md```: Assembling the base quadcopter.
