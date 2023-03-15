@@ -15,6 +15,6 @@
 - ```README_control.md```: Tuning PX4 quadcopter, and commands for running control algorithm in simulation.
 - ```README_run_stuff.md```: Commands to run in the Xavier NX terminal to start mocap, ROVIO, MAVLink communication through mavros, and fly the quadcopter.
 
-### Other
+#### Other
 - ```README_useful.md```: Tips and links to useful resources.
 - (COMING SOON)```README_assembly.md```: Assembling the base quadcopter.
