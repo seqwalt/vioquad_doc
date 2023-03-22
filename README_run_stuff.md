@@ -16,7 +16,7 @@ rosrun topic_tools relay /mocap_node/vioquad/pose /mavros/vision_pose/pose
 3. For visualization on the Ubuntu base station, run:
 ```
 export ROS_MASTER_URI=http://xavier_IP_address:11311
-rosrun rviz rviz
+rviz
 ```
 In RVIZ, view the pose of the quadcopter by clicking ```Add``` --> ```By Topic``` --> ```/mocap_node/vioquad/pose```.
 

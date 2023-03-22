@@ -63,6 +63,28 @@ optitrack_config:
 ```
 Note '21' is the Motive Stream ID of the rigid body for the VIO quadcopter.
 
+## Changing network priority from ethernet to wifi
+If the Xavier NX is connected to both ethernet (for a sensor) and wifi (for mocap), we need to make sure wifi has a higher network priority so mocap data can be sent.
+
+1. View current network priorities (lower metric = higher priority) with ```route -n```
+  - Note if eth0 and wlan0 connections exist, running ```sudo nmcli dev status``` will show an ordered list in which the higher priority connection is on top (eth0 by default).
+
+
+2. Switch wifi priority higher (lower metric to 100)
+```
+sudo nmcli dev modify wlan0 ipv4.route-metric 100
+```
+3. Switch ethernet priority lower (increase metric to 600)
+```
+sudo nmcli dev modify eth0 ipv4.route-metric 600
+```
+4. Check priorities are correct:
+```
+route -n
+sudo nmcli dev status
+```
+
+
 ## Test mocap in RVIZ
 1. In Xavier run:
 ```
@@ -71,7 +93,7 @@ roslaunch mocap_optitrack mocap.launch
 2. In base station run:
 ```
 export ROS_MASTER_URI=http://xavier_IP_address:11311
-rosrun rviz rviz
+rviz
 ```
 In RVIZ, view the pose of the quadcopter.
 
