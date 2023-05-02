@@ -12,7 +12,8 @@
 - ```README_mocap.md```: Setting up Motive motion capture and PX4 EKF2, for ground truth state estimation.
 
 #### Taking flight
-- ```README_control.md```: Tuning PX4 quadcopter, and commands for running control algorithm in simulation.
+- ```README_tuning.md```: Tuning PX4 quadcopter
+- ```README_simulation.md```: Commands for running experiments in simulation.
 - ```README_run_stuff.md```: Commands to run in the Xavier NX terminal to start mocap, ROVIO, MAVLink communication through mavros, and fly the quadcopter.
 
 #### Other
