@@ -48,6 +48,13 @@ roslaunch mavros px4.launch
 ```
 4. Start QGroundControl on the base station.
 
+## Record ulog flight data
+1. ```cd``` to directory containing ```mavlin_ulog_streaming.py```
+2. Start recording
+```
+./mavlink_ulog_streaming.py /dev/ttyTHS0
+```
+
 ## Start autonomous flight
 1. With the RC Transmitter in ```POSITION``` mode, ARM the quadcopter with the transmitter.
 2. After starting mocap and/or VIO and mavros, on the Xavier NX run:

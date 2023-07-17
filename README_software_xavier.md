@@ -29,8 +29,9 @@ tmp=$(hostname -I)
 ip=$(echo $tmp | cut -d' ' -f 1)
 export ROS_IP=$ip
 
-# ROS package path
-export ROS_PACKAGE_PATH=/home/my_user_name/ROS/catkin_ws:$ROS_PACKAGE_PATH
+# Exports
+export ROS_PACKAGE_PATH=/home/my_user_name/ROS/catkin_ws:$ROS_PACKAGE_PATH  # ROS package path
+export PATH=$PATH:/home/vio-quad/.local/bin  # pyserial path (for mavlink_ulog_streaming.py)
 ```
 
 ## Install ROVIO and related packages
@@ -147,6 +148,15 @@ cd ~/ROS/catkin_ws
 catkin build realsense2_camera realsense2_description -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release
 ```
 
+## Setup mavlink_ulog_streaming.py (optional)
+This is useful for logging ulog data when your FCU does not have an SD card. Instead, a python script from PX4 can stream the data to you companion computer. First we download the script, install dependencies, then make it executable:
+```
+cd
+https://raw.githubusercontent.com/PX4/PX4-Autopilot/main/Tools/mavlink_ulog_streaming.py
+pip3 install datetime argparse pymavlink pyserial
+chmod +x mavlink_ulog_streaming.py
+```
+Usage can be found in ```README_run_stuff.md```.
 ## Install miscellaneous packages
 ```
 sudo apt install ros-noetic-rqt-image-view ros-noetic-image-proc
