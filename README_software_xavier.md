@@ -148,7 +148,7 @@ cd ~/ROS/catkin_ws
 catkin build realsense2_camera realsense2_description -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release
 ```
 
-## Setup mavlink_ulog_streaming.py (optional)
+## Setup mavlink_ulog_streaming.py (currently cannot get to work)
 This is useful for logging ulog data when your FCU does not have an SD card. Instead, a python script from PX4 can stream the data to you companion computer. First we download the script, install dependencies, then make it executable:
 ```
 cd
