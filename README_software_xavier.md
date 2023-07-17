@@ -153,7 +153,8 @@ This is useful for logging ulog data when your FCU does not have an SD card. Ins
 ```
 cd
 https://raw.githubusercontent.com/PX4/PX4-Autopilot/main/Tools/mavlink_ulog_streaming.py
-pip3 install datetime argparse pymavlink pyserial
+pip3 install datetime argparse pymavlink pyserial # for creating ulogs
+pip3 install pyulog # for converting and displaying ulogs
 chmod +x mavlink_ulog_streaming.py
 ```
 Usage can be found in ```README_run_stuff.md```.
