@@ -7,22 +7,23 @@ pip3 install kconfiglib future
 cd ~/
 git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 cd ~/PX4-Autopilot
-make holybro_kakuteh7v2_bootloader
+make holybro_kakuteh7v2_bootloader  # builds the bootloader firmware
 sudo apt install dfu-util
 ```
-Need to flash bootloader, since Betaflight comes pre-loaded. To enter DFU mode, hold the boot button down (white button on FC) while connecting the USB cable to your computer. The button can be released after the board is powered up. Then, enter the following to flash the bootloader:
+Now we need to flash the bootloader using the firmware we just built, since Betaflight comes pre-loaded. To enter DFU mode, hold the boot button down (white button on FC) while connecting the USB cable to your computer. The button can be released after the board is powered up. Then, enter the following to flash the bootloader:
 ```
+dfu-util -a 0 --dfuse-address 0x08000000:force:mass-erase:leave -D build/holybro_kakuteh7v2_bootloader/holybro_kakuteh7v2_bootloader.bin  # erase flash parameters to fix problems with parameter saving
 dfu-util -a 0 --dfuse-address 0x08000000 -D build/holybro_kakuteh7v2_bootloader/holybro_kakuteh7v2_bootloader.bin
 ```
 Reboot the FC and it let it boot without holding the boot button (i.e. unplug and plug-in the FC USB). Next, flash PX4 onto the board:
 ```
-make holybro_kakuteh7v2_default
-make holybro_kakuteh7v2_default upload
+make holybro_kakuteh7v2_default         # build
+make holybro_kakuteh7v2_default upload  # build and upload
 ```
 
 # QGroundControl Configuration
-
-With the FC connected to the computer open QGroundControl (QGC).
+## Initial QGC Setup
+With the FC connected to the computer open QGroundControl (QGC newest version is best).
 - After QGC detects the connection, click the ```Q``` icon on the top left of the QGC window. Then select ```Vehicle Setup```.
 - In the ```Airframe``` tab, select ```Generic Quadcopter```.
 - In the ```Sensors``` tab, calibrate the sensors following the automated steps.
@@ -40,3 +41,7 @@ With the FC connected to the computer open QGroundControl (QGC).
     - Allows for taking over control of the drone during an Offboard mode mission. See here: https://docs.px4.io/main/en/flight_modes/offboard.html#offboard-parameters
 - In the ```Actuators``` tab correct motor directions with the propellors detached, and battery plugged in.
 - Note ESC calibration is NOT required if using DSHOT (which we are).
+
+## Saving and Loading Parameters
+All parameters/calibrations/settings can be saved to a file then reloaded if FCU firmware needs to be updated or changed.
+- In the top-right corner of the ```Parameters``` tab, select ```Tools```, then ```save to file``` or ```load from file``` depending on your needs.
