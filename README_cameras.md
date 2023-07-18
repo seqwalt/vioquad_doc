@@ -128,6 +128,7 @@ rosrun kalibr kalibr_calibrate_cameras \
     --models pinhole-radtan pinhole-radtan \
     --topics /camera/infra1/image_rect_raw /camera/infra2/image_rect_raw
 ```
+Note for the CSI fisheye camera, the pinhole-equidistant model was used instead, with the command: ```rosrun kalibr kalibr_calibrate_cameras --bag /data/csi_cam/csi_cam_raw.bag --target /data/aprilgrid.yaml --models pinhole-equi --topics /csi_cam/image_raw```.
 2. The previous step should generate a file called ```vioquad_d435i-camchain.yaml```. To now do stereo-IMU calibration, run:
 ```
 rosrun kalibr kalibr_calibrate_imu_camera \

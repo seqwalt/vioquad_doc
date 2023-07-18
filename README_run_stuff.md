@@ -1,7 +1,11 @@
 ## IMPORTANT: Turning Xavier NX on/off
 **Turning ON:**
 - With companion computer power cord disconnected, plug in battery to quadcopter.
-- After the FC sends its "ready to go" chime, plug in comapnion computer power cord. It can take anywhere from 1-5 mins to boot up. When the Xavier NX fan audibly spins up (audible from a few feet a way), that means you can ssh soon (wait till the noise dies down befor attempting ssh). The ssh command from the Ubuntu base station (which is on the same wifi ARC LAN network), is ```ssh vio-quad@the_vio_quad_IP```.
+- After the FC sends its "ready to go" chime, plug in comapnion computer power cord. It can take anywhere from 1-5 mins to boot up. When the Xavier NX fan audibly spins up (audible from a few feet a way), that means you can ssh soon (wait till the noise dies down befor attempting ssh). The ssh command from the Ubuntu base station (which is on the same wifi ARC LAN network), is
+```
+ssh -X vio-quad@the_vio_quad_IP
+```
+where ```-X``` makes sure X11 forwarding is enabled for ssh, allowing (among other things) for copying text to the clipboard using terminal (e.g. xclip).
 
 **Turning OFF:**
 - Do `sudo shutdown -P now` command on Xavier NX, then wait about 1 minute before unplugging.
