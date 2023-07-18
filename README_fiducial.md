@@ -25,6 +25,7 @@ roslaunch apriltag_ros continuous_detection.launch
 6. The poses of the apriltag bundle is on the ```/tf``` topic.
 
 ## Publish image topic from CSI camera
+This project uses a IMX219-160 fisheye camera for the down-facing camera that views the AprilTag landing pad. See camera specs at https://www.waveshare.com/imx219-160-camera.htm. Make sure to calibrate the camera using kalibr, just like was done with the D435i stereo camera. 
 1. Make sure gscam dependencies are installed
 ```
 sudo apt install gstreamer1.0-tools libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev
