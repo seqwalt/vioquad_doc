@@ -25,7 +25,7 @@ roslaunch apriltag_ros continuous_detection.launch
 6. The poses of the apriltag bundle is on the ```/tf``` topic.
 
 ## Publish image topic from CSI camera
-This project uses a IMX219-160 fisheye camera for the down-facing camera that views the AprilTag landing pad. See camera specs at https://www.waveshare.com/imx219-160-camera.htm. Make sure to calibrate the camera using kalibr, just like was done with the D435i stereo camera. 
+This project uses a IMX219-160 fisheye camera for the down-facing camera that views the AprilTag landing pad. See camera specs at https://www.waveshare.com/imx219-160-camera.htm. Make sure to calibrate the camera using kalibr, just like was done with the D435i stereo camera.
 1. Make sure gscam dependencies are installed
 ```
 sudo apt install gstreamer1.0-tools libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev
@@ -43,7 +43,9 @@ source devel/setup.bash
 ```
 roslaunch gscam nvidia_csi.launch
 ```
-4. If getting "Failed to create CaptureSession" error, try
+4. Potential errors:
+ - If getting "Failed to create CaptureSession" error, try
 ```
 sudo service nvargus-daemon restart
 ```
+ - If getting "libEGL warning: DRI3: failed to query the version libEGL warning: DRI2: failed to authenticate" with "Could not get gstreamer sample" error, make sure X11 forwarding is not being used, i.e. do not use the ```-X``` option in the ```ssh``` command when connecting to the Xavier NX.

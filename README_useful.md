@@ -7,7 +7,7 @@
   - https://github.com/zinuok?tab=repositories
 - Implemenations of different VIO algorithms (see different branches for different cameras)
   - https://github.com/engcang/vins-application
-- For copying things from terminal easily, these lines can be put in your .bashrc file. Make sure to ```sudo apt install xclip``` first.
+- For copying things from terminal easily, these lines can be put in your .bashrc file. Make sure to ```sudo apt install xclip``` first. Note this only works over ssh if the ```-X``` ssh option is used (X11 forwarding). However, X11 forwarding breaks gscam usage it seems.
 ```
 # Helpful general use
 alias "copy=head -c -1 | xclip -sel clip" # usage example: pwd | copy    Note this removes the trailing newline character
