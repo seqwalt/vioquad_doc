@@ -23,6 +23,11 @@ rviz
 ```
 In RVIZ, view the pose of the quadcopter by clicking ```Add``` --> ```By Topic``` --> ```/mocap_node/vioquad/pose```.
 
+## Run down-facing camera driver
+```
+roslaunch gscam nvidia_csi.launch
+```
+
 ## Run rovio with the d435i camera on the Xavier NX
 1. Start rovio and wait for tests to finish:
 ```
@@ -51,12 +56,18 @@ roslaunch mavros px4.launch
 ```
 4. Start QGroundControl on the base station.
 
-## Record ulog flight data
+## Record flight data
+For thrust mapping, it may be useful to record various mavros messages (run in either base station or xavier):
+```
+rosbag record /mavros/setpoint_raw/target_attitude /mavros/imu/data /mavros/local_position/pose
+```
+where ```target_attitude``` contains messages of PX4-normalized thrust. Thrust mapping can then be approximated using python scripts in ```/home/vio-quad/ROS/catkin_ws/src/quad_control/extra/log_analysis```
 
 ## Start autonomous flight
 1. With the RC Transmitter in ```POSITION``` mode, ARM the quadcopter with the transmitter.
 2. After starting mocap and/or VIO and mavros, on the Xavier NX run:
 ```
-roslaunch quad_control controller.launch
+roslaunch quad_control mpc_control_xavier.launch
 ```
+which will run the control nodes and the AprilTag estimation node.
 3. **WARNING:** Be ready to "Ctrl - C" the quad_control nodes in case the quadcopter does not behave as expected!
