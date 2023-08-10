@@ -40,7 +40,7 @@ rosrun odom_predictor odom_predictor_node
 ```
 8. Run experiment
 ```
-roslaunch quad_control mpc_control.launch simulation:=true
+roslaunch quad_control mpc_control_sim.launch
 ```
 
 # TODO:
