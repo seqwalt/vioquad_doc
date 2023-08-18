@@ -197,6 +197,6 @@ catkin clean --deinit -y
 catkin init
 catkin build rovio -DROVIO_NCAM=2 -DROVIO_NMAXFEATURE=15 --cmake-args -DCMAKE_BUILD_TYPE=Release
 catkin build realsense2_camera realsense2_description -DCATKIN_ENABLE_TESTING=False -DCMAKE_BUILD_TYPE=Release
-catkin build quad_control
+catkin build vioquad_land
 catkin build
 ```
