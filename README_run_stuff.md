@@ -61,13 +61,13 @@ For thrust mapping, it may be useful to record various mavros messages (run in e
 ```
 rosbag record /mavros/setpoint_raw/target_attitude /mavros/imu/data /mavros/local_position/pose
 ```
-where ```target_attitude``` contains messages of PX4-normalized thrust. Thrust mapping can then be approximated using python scripts in ```/home/vio-quad/ROS/catkin_ws/src/quad_control/extra/log_analysis```
+where ```target_attitude``` contains messages of PX4-normalized thrust. Thrust mapping can then be approximated using python scripts in ```/home/vio-quad/ROS/catkin_ws/src/vioquad_land/extra/log_analysis```
 
 ## Start autonomous flight
 1. With the RC Transmitter in ```POSITION``` mode, ARM the quadcopter with the transmitter.
 2. After starting mocap and/or VIO and mavros, on the Xavier NX run:
 ```
-roslaunch quad_control mpc_control_xavier.launch
+roslaunch vioquad_land mpc_control_xavier.launch
 ```
 which will run the control nodes and the AprilTag estimation node.
-3. **WARNING:** Be ready to "Ctrl - C" the quad_control nodes in case the quadcopter does not behave as expected!
+3. **WARNING:** Be ready to "Ctrl - C" the vioquad_land nodes in case the quadcopter does not behave as expected!

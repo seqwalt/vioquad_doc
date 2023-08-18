@@ -5,7 +5,7 @@ Steps to start simulation, connect to mavros, visualize in rviz, run experiment:
 
 1. Start simulation with gazebo and px4. Change startup settings in run_gazebo-classic.sh
 ```
-cd path/to/quad_control/extra/simulation
+cd path/to/vioquad_land/extra/simulation
 ./run_gazebo-classic.sh path/to/PX4-Autopilot
 ```
 2. Connect to mavros
@@ -14,7 +14,7 @@ roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 ```
 3. Start visualization
 ```
-cd path/to/quad_control/extra/rviz
+cd path/to/vioquad_land/extra/rviz
 rosrun rviz rviz -d paths.rviz
 ```
 4. Run rovio transform node (uses ground truth until rovio is available)
@@ -40,7 +40,7 @@ rosrun odom_predictor odom_predictor_node
 ```
 8. Run experiment
 ```
-roslaunch quad_control mpc_control_sim.launch
+roslaunch vioquad_land mpc_control_sim.launch
 ```
 
 # TODO:
@@ -54,7 +54,7 @@ Set ```EKF2_HGT_REF``` to Vision in QGroundControl.
 #### Monocular down-facing camera
 #### VIO Stereo camera
 ```
-cd my_path_to/quad_control/extra/simulation/models/vi_camera/xacro
+cd my_path_to/vioquad_land/extra/simulation/models/vi_camera/xacro
 xacro vi_camera.urdf.xacro > vi_camera.urdf
 gz sdf -p vi_camera.urdf > ../vi_camera.sdf
 ```
