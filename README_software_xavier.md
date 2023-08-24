@@ -84,9 +84,9 @@ sudo apt install ros-noetic-eigen-conversions ros-noetic-tf-conversions
 cd ~/ROS/catkin_ws
 catkin build
 ```
-6. Turn off visualizations (required for when running ROVIO from ssh). In file /home/vio-quad/ROS/catkin_ws/src/rovio/cfg/xavier_nx_d435i/rovio_stereo.info, set:
+6. Turn on visualizations for ROVIO. Due to changes made in seqwalt/rovio as compared to the original rovio repo, turning on visualizations will publish the rovio frame visualizations as a ROS topic (rovio/frame_vis0 and rovio/frame_vis1) that can be viewed from the base station. In file /home/vio-quad/ROS/catkin_ws/src/rovio/cfg/xavier_nx_d435i/rovio_stereo.info, set:
 ```
-doFrameVisualisation false;
+doFrameVisualisation true;
 ```
 
 ## Install realsense camera drivers
@@ -118,6 +118,10 @@ sudo make uninstall && make clean && make -j6 && sudo make install
 4. Fix "failed to open usb interface error" using issue comment: https://github.com/IntelRealSense/realsense-ros/issues/1408#issuecomment-698128999  
 ```
 sudo cp ~/librealsense/config/99-realsense-libusb.rules /etc/udev/rules.d
+```
+5. (optional) Install ```pyrealsense2```, a dependency for calibrating D435i IMU (see https://github.com/IntelRealSense/librealsense/tree/master/tools/rs-imu-calibration):
+```
+pip3 install pyrealsense2
 ```
 
 ## Install ROS wrapper for realsense
