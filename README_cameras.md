@@ -25,12 +25,20 @@ The image outputs were resized to a smaller resolution to try to get ROVIO worki
 
 # Using Kalibr in a Docker Container for the d435i
 ## Preliminaries
-- If not done already make sure to **calibrate the d435i IMU**. Use these resources:
+- If using d435i IMU for VIO (i.e. not the FCU IMU) and if not done already make sure to **calibrate the d435i IMU**. Use these resources:
   - https://www.intelrealsense.com/wp-content/uploads/2019/07/Intel_RealSense_Depth_D435i_IMU_Calibration.pdf
   - https://github.com/IntelRealSense/librealsense/blob/master/doc/d435i.md#imu-calibration.
 - **Print out an aprilgrid**, and record its parameters into a file called ```aprilgrid.yaml```, following steps from https://github.com/ethz-asl/kalibr/wiki/calibration-targets#a-aprilgrid.
-- **Record a rosbag** called ```vioquad_d435i.bag``` containing the IMU and both infrared stereo camera topics. The camera needs to be facing the aprilgrid, as shown in the video here: https://github.com/ethz-asl/kalibr/wiki#tutorial-IMU-camera-calibration
 - **Record an IMU-only rosbag** called ```imu.bag```, used later for calculating allan variance parameters. Place your IMU on some damped surface and record your IMU data to a rosbag. You must record at least 3 hours of data. The longer the sequence, the more accurate the results.
+  - If using FCU IMU instead of d435i IMU for VIO, record the rosbag by:
+    1. Plug FCU into base station with usb<->usb-c cord and determine usb port used (use ```ls \dev``` with the cord plugged in and not plugged in to determine port). Most likely ```ttyACM1``` or ```ttyACM0```.
+    2. Start ```mavros``` on the base station (make sure QGC is closed). If the port is ```ttyACM1``` do:
+    ```
+    rosrun mavros mavros_node _fcu_url:=/dev/ttyACM1:921600
+    ```
+    where ```921600``` is the baud rate.
+    3. Record the imu rosbag of the topic ```/mavros/imu/data_raw```.
+- **Record a rosbag** called ```vioquad_d435i.bag``` containing the IMU and both infrared stereo camera topics. The camera needs to be facing the aprilgrid, as shown in the video here: https://github.com/ethz-asl/kalibr/wiki#tutorial-IMU-camera-calibration
 
 ## Setup Docker
 1. Get Docker: https://docs.docker.com/get-docker/
