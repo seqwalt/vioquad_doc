@@ -37,7 +37,10 @@ The image outputs were resized to a smaller resolution to try to get ROVIO worki
     rosrun mavros mavros_node _fcu_url:=/dev/ttyACM1:921600
     ```
     where ```921600``` is the baud rate.
-    3. Record the imu rosbag of the topic ```/mavros/imu/data_raw```.
+    3. Record the imu rosbag of the topic ```/mavros/imu/data_raw```. Example command:
+    ```
+    rosbag record --duration=3.5h --output-prefix=FCU_IMU /mavros/imu/data_raw
+    ```
 - **Record a rosbag** called ```vioquad_d435i.bag``` containing the IMU and both infrared stereo camera topics. The camera needs to be facing the aprilgrid, as shown in the video here: https://github.com/ethz-asl/kalibr/wiki#tutorial-IMU-camera-calibration
 
 ## Setup Docker
