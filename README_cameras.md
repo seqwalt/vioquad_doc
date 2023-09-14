@@ -36,12 +36,16 @@ The image outputs were resized to a smaller resolution to try to get ROVIO worki
     ```
     rosrun mavros mavros_node _fcu_url:=/dev/ttyACM1:921600
     ```
-    where ```921600``` is the baud rate.
+    where ```921600``` is the baud rate that was set in QGC.
     3. Record the imu rosbag of the topic ```/mavros/imu/data_raw```. Example command:
     ```
     rosbag record --duration=3.5h --output-prefix=FCU_IMU /mavros/imu/data_raw
     ```
 - **Record a rosbag** called ```vioquad_d435i.bag``` containing the IMU and both infrared stereo camera topics. The camera needs to be facing the aprilgrid, as shown in the video here: https://github.com/ethz-asl/kalibr/wiki#tutorial-IMU-camera-calibration
+  - For example, if using the FCU IMU you could rosbag record on the Xavier NX itself, using:
+  ```
+  rosbag record --duration=2m --output-prefix=D435i_FCU_IMU /camera/infra1/image_rect_raw /camera/infra2/image_rect_raw /mavros/imu/data_raw
+  ```
 
 ## Setup Docker
 1. Get Docker: https://docs.docker.com/get-docker/
