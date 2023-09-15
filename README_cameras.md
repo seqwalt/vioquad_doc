@@ -48,12 +48,13 @@ The image outputs were resized to a smaller resolution to try to get ROVIO worki
   ```
 
 ## Setup Docker
-1. Get Docker: https://docs.docker.com/get-docker/
-2. Build the kalibr docker and call it ```vio_calib```. The Docker file with ROS 18.04 was used to avoid some issues when trying 20.04.
+1. Get Docker: https://docs.docker.com/get-docker/. Docker is used here to avoid build dependency issues.
+2. Build the kalibr docker and call it ```vio_calib``` (~15mins):
 ```
-git clone https://github.com/ethz-asl/kalibr.git
+git clone --no-checkout https://github.com/ethz-asl/kalibr.git
 cd kalibr
-docker build -t vio_calib -f Dockerfile_ros1_18_04 .
+git checkout 94bb843  #use specific repo commit
+docker build -t vio_calib -f Dockerfile_ros1_20_04 .
 ```
 3. Make a directory on the base station called ```cam_imu_calib``` that will hold ```aprilgrid.yaml```, ```vioquad_d435i.bag```, and ```imu.bag```. The Docker container will be able to access the contents of this directory.
 ```
@@ -101,15 +102,17 @@ Following steps from https://github.com/ori-drs/allan_variance_ros.
 1. Once in the container, build the ```allan_variance_ros``` github repo:
 ```
 cd /catkin_ws/src
-git clone https://github.com/ori-drs/allan_variance_ros.git
-cd ..
+git clone --no-checkout https://github.com/ori-drs/allan_variance_ros.git
+cd allan_variance_ros
+git checkout 5b08a11  #use specific repo commit
+cd /catkin_ws
 catkin build
-source /catkin_ws/devel/setup.bash
+source /catkin_ws/devel/setup.bash  #must be sourced each time opening Docker
 ```
 2. Reorganize the ROS messages of ```imu.bag``` by timestamp:
 ```
 cd /data
-rosrun allan_variance_ros cookbag.py --input d435i/imu.bag \
+rosrun allan_variance_ros cookbag.py --input allan_var/imu.bag \
     --output allan_var/cooked_imu.bag
 ```
 3. Create config file called ```/data/allan_var/d435i.yaml``` then run the Allan variance computation tool.
@@ -117,10 +120,10 @@ rosrun allan_variance_ros cookbag.py --input d435i/imu.bag \
 ```
 imu_topic: "/camera/imu"
 imu_rate: 400        # default rate for d435i
-measure_rate: 100    # Rate to which imu data is subsampled (set to ~1/4 of imu_rate)
+measure_rate: 100    # Rate to which imu data is subsampled (decrease value to increase calibration speed. Need measure_rate <= imu_rate)
 sequence_time: 10800 # 3 hours in seconds (length of imu.bag)
 ```
-  - Run Allan variance computation.
+  - Run Allan variance computation. May need to run ```roscore``` on host, and update ```ROS_MASTER_URI``` env variable in Docker, then do:
 ```
 cd /data/allan_var
 rosrun allan_variance_ros allan_variance . d435i.yaml
@@ -157,6 +160,7 @@ rosrun kalibr kalibr_calibrate_imu_camera \
 1. The previous step should generate **another** file called ```vioquad_d435i-camchain-imucam.yaml```.
 To use this file to generate rovio calibration files run:
 ```
+sudo apt install python-is-python3
 cd /data/rovio
 rosrun kalibr kalibr_rovio_config --cam /data/d435i/vioquad_d435i-camchain-imucam.yaml
 ```
